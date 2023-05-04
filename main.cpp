@@ -1,4 +1,8 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <cstdlib>
+
 using namespace std;
 #define LIST_SIZE 30
 #define TRUE 1
@@ -26,7 +30,8 @@ class S_List{
         void updateSvng();
         void removeSvng();
         void searchData();
-
+        void saveData();
+        void loadData();
 };
 
 S_List::S_List(){
@@ -117,14 +122,72 @@ void S_List::updateSvng(){
     }
     cout<<"Change successfully implemented.\n";
 }
+
 void S_List::removeSvng(){
 
 }
-void saveData(){
 
+void S_List :: saveData(){
+    int i;
+    ofstream myfile;
+
+    myfile.open("datalist.txt");
+    for(i=0;i<count;i++){
+        if(l[i].title=="N/A"){
+            continue;
+        }
+        myfile << l[i].title << endl;
+        myfile << l[i].goal_amount << endl; 
+        myfile << l[i].curr_amount << endl; 
+        myfile << l[i].start_d << endl;
+        myfile << l[i].end_d << endl;
+        myfile << l[i].is_full<< endl;
+    }
+    cout<<"=> 저장됨!\n";
+    return;
 }
-void loadData(){
 
+void S_List :: loadData(){
+    ifstream myfile;
+
+    string tmp;
+    
+    myfile.open("datalist.txt");
+    
+    if(!myfile){
+        printf("=> 파일 없음\n");
+        return;
+    }
+
+    printf("=> 데이터 가져오는 중...");
+
+    while(TRUE){
+        getline(myfile, l[count].title);
+        
+        getline(myfile, tmp);
+
+        if(!myfile) break;
+        cout <<endl<< typeid(tmp).name() << endl;
+        
+        tmp[-1] = '\0';
+        l[count].goal_amount = 0;
+        l[count].goal_amount = stoi(tmp, nullptr, 10);
+       
+        getline(myfile, tmp);
+        tmp[-1] = '\0';
+        
+        l[count].curr_amount = 0;
+        l[count].curr_amount = stoi(tmp, nullptr, 10);
+        getline(myfile, l[count].start_d);
+        getline(myfile,l[count].end_d);
+        getline(myfile,tmp);
+
+        l[count].is_full = tmp[0];
+        if(!myfile) break;
+        count++;
+    }
+
+    return;
 }
 void S_List::searchData(){
 
@@ -135,6 +198,10 @@ int main(){
     S_List savelist;
     Svng tmp;
     int menu_num;
+
+    savelist.loadData();
+
+
     while(TRUE){
         menu_num = select_menu();
         switch(menu_num){
@@ -168,7 +235,7 @@ int main(){
                 savelist.removeSvng();
                 break;
             case 5:
-                saveData();
+                savelist.saveData();
                 break;
             case 6:
                 savelist.searchData();
