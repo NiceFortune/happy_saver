@@ -216,16 +216,23 @@ void S_List::searchData(){
     cout << "Search >> ";
     getline(cin, keyword);
 
-    
     for(int i=0;i<count;i++){
-        if(s[i]->is_delete==1){
+        if(l[i].title==""){
             continue;
         }
-        else if(s[i]->title.find("title")!=string::npos){
-            cout<<s[i]->title;
-            printf("%c %s\n",(s[i])->rating,(s[i])->note);
+        else if(l[i].title.find(keyword)!=string::npos){
+            cout << "========================\n";
+            cout<<"Piggy Bank : "<<l[i].title<<endl;
+            cout<<"GOAL: $"<<l[i].goal_amount<<endl;
+            cout<<"Current Status: $"<<l[i].curr_amount<<endl;
+            cout<<"Start Date: "<<l[i].start_d<<endl;
+            cout<<"End Date: "<<l[i].end_d<<endl;
+            cout<<"Finished?: "<<l[i].is_full<<endl;
+
             scount++;
         }  
+        cout << "========================\n\n";
+
     }
     if(scount==0){
         printf("=> 검색된 데이터 없음!\n");
