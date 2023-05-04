@@ -136,7 +136,6 @@ void S_List::removeSvng(){
         cout << "Improper input.\n";
         return;
     }
-    
     cout <<"Are you sure you're going to delete? (Delete:1) ";
     cin>>num;
 
@@ -171,7 +170,6 @@ void S_List :: saveData(){
 
 void S_List :: loadData(){
     ifstream myfile;
-
     string tmp;
     
     myfile.open("datalist.txt");
@@ -237,10 +235,8 @@ void S_List::searchData(){
     if(scount==0){
         printf("=> 검색된 데이터 없음!\n");
     }
-
     return;
 }
-
 
 int main(){
     S_List savelist;
@@ -248,7 +244,6 @@ int main(){
     int menu_num;
 
     savelist.loadData();
-
 
     while(TRUE){
         menu_num = select_menu();
