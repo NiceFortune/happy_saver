@@ -72,6 +72,7 @@ void S_List::readSvng(){
         return;
     } 
     for(int i=0;i<count;i++){
+        if(l[i].title=="") continue;
         cout<<"Piggy Bank : "<<l[i].title<<endl;
         cout<<"GOAL: $"<<l[i].goal_amount<<endl;
         cout<<"Current Status: $"<<l[i].curr_amount<<endl;
@@ -87,7 +88,10 @@ void S_List::updateSvng(){
 
     cout<<"Enter number of piggy bank to change: ";
     cin>>change_num;
-
+    if(l[change_num-1].title=="") {
+        cout << "Improper input.\n";
+        return;
+    }
     cout<<"Enter which attricute to change: ";
     cout<<"1) Piggy bank name\n";
     cout<<"2) Goal Amount\n";
@@ -124,7 +128,25 @@ void S_List::updateSvng(){
 }
 
 void S_List::removeSvng(){
+    int num;
 
+    cout << "Enter the number of piggy bank to delete: ";
+    cin >> num;
+    if(l[num-1].title==""){ 
+        cout << "Improper input.\n";
+        return;
+    }
+    
+    cout <<"Are you sure you're going to delete? (Delete:1) ";
+    cin>>num;
+
+    if(num==1){
+        l[num-1].title="";
+    }
+    else{
+        printf("Deletion canceled.\n");
+        return;
+    }
 }
 
 void S_List :: saveData(){
@@ -133,7 +155,7 @@ void S_List :: saveData(){
 
     myfile.open("datalist.txt");
     for(i=0;i<count;i++){
-        if(l[i].title=="N/A"){
+        if(l[i].title==""){
             continue;
         }
         myfile << l[i].title << endl;
@@ -155,11 +177,11 @@ void S_List :: loadData(){
     myfile.open("datalist.txt");
     
     if(!myfile){
-        printf("=> 파일 없음\n");
+        printf("=> No file found\n");
         return;
     }
 
-    printf("=> 데이터 가져오는 중...");
+    cout << "=> Loading...";
 
     while(TRUE){
         getline(myfile, l[count].title);
@@ -167,16 +189,13 @@ void S_List :: loadData(){
         getline(myfile, tmp);
 
         if(!myfile) break;
-        cout <<endl<< typeid(tmp).name() << endl;
         
         tmp[-1] = '\0';
-        l[count].goal_amount = 0;
         l[count].goal_amount = stoi(tmp, nullptr, 10);
        
         getline(myfile, tmp);
         tmp[-1] = '\0';
         
-        l[count].curr_amount = 0;
         l[count].curr_amount = stoi(tmp, nullptr, 10);
         getline(myfile, l[count].start_d);
         getline(myfile,l[count].end_d);
@@ -186,11 +205,33 @@ void S_List :: loadData(){
         if(!myfile) break;
         count++;
     }
+    cout << " successful!\n";
 
     return;
 }
-void S_List::searchData(){
 
+void S_List::searchData(){
+    string keyword;
+    int scount=0;
+    cout << "Search >> ";
+    getline(cin, keyword);
+
+    
+    for(int i=0;i<count;i++){
+        if(s[i]->is_delete==1){
+            continue;
+        }
+        else if(s[i]->title.find("title")!=string::npos){
+            cout<<s[i]->title;
+            printf("%c %s\n",(s[i])->rating,(s[i])->note);
+            scount++;
+        }  
+    }
+    if(scount==0){
+        printf("=> 검색된 데이터 없음!\n");
+    }
+
+    return;
 }
 
 
