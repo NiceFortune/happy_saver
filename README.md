@@ -3,7 +3,7 @@
 ![piggy-bank-g935a5c435_1920](https://user-images.githubusercontent.com/101008862/236654506-cafa2cb2-3c6d-4244-ada0-03a7b35d0130.jpg)
 
 <p align="center">
-  <img src="/Users/livrocky/Downloads/piggy-bank" width="350">
+  <img src="/Users/livrocky/Downloads/piggy-bank.jpg" width="350">
 </p>
 
 ## mini project 주제
