@@ -23,6 +23,7 @@ class Svng{
 class S_List{
     Svng l[LIST_SIZE];
     int count;
+    int index;
     public:
         S_List();
         void addSvng(Svng s);
@@ -36,6 +37,7 @@ class S_List{
 
 S_List::S_List(){
     count = 0;
+    index = 0;
 }
 
 int select_menu(){
@@ -63,22 +65,25 @@ void S_List::addSvng(Svng s){
     l[count].is_full = s.is_full;
 
     count++;
+    index++;
     return;
 }
 
 void S_List::readSvng(){
-    if(count==0){
+    if(index==0){
         cout << "There are no piggy banks :(\n";
         return;
     } 
     for(int i=0;i<count;i++){
         if(l[i].title=="") continue;
-        cout<<"Piggy Bank : "<<l[i].title<<endl;
+
+        cout<<"Piggy Bank #"<<i+1<<endl;
+        cout<<"TITLE: "<<l[i].title<<endl;
         cout<<"GOAL: $"<<l[i].goal_amount<<endl;
-        cout<<"Current Status: $"<<l[i].curr_amount<<endl;
-        cout<<"Start Date: "<<l[i].start_d<<endl;
-        cout<<"End Date: "<<l[i].end_d<<endl;
-        cout<<"Finished?: "<<l[i].is_full<<endl<<endl;
+        cout<<"STATUS: $"<<l[i].curr_amount<<endl;
+        cout<<"START: "<<l[i].start_d<<endl;
+        cout<<"END: "<<l[i].end_d<<endl;
+        cout<<"FINISHED?: "<<l[i].is_full<<endl<<endl;
     }
     return;
 }
@@ -130,6 +135,8 @@ void S_List::updateSvng(){
 void S_List::removeSvng(){
     int num;
 
+    readSvng();
+
     cout << "Enter the number of piggy bank to delete: ";
     cin >> num;
     if(l[num-1].title==""){ 
@@ -141,6 +148,7 @@ void S_List::removeSvng(){
 
     if(num==1){
         l[num-1].title="";
+        index--;
     }
     else{
         printf("Deletion canceled.\n");
@@ -202,6 +210,7 @@ void S_List :: loadData(){
         l[count].is_full = tmp[0];
         if(!myfile) break;
         count++;
+        index++;
     }
     cout << " successful!\n";
 
