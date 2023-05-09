@@ -33,6 +33,7 @@ class S_List{
         void searchData();
         void saveData();
         void loadData();
+        void transSvng();
 };
 
 S_List::S_List(){
@@ -97,7 +98,7 @@ void S_List::updateSvng(){
         cout << "Improper input.\n";
         return;
     }
-    cout<<"Enter which attricute to change: ";
+    cout<<"Enter which attricute to change: \n";
     cout<<"1) Piggy bank name\n";
     cout<<"2) Goal Amount\n";
     cout<<"3) Current Savings\n";
@@ -247,6 +248,17 @@ void S_List::searchData(){
     return;
 }
 
+void S_List :: transSvng(){
+    int fromNum, toNum, amount;
+    cout<<"From: ";
+    cin>>fromNum;
+    cout<<"To: ";
+    cin>>toNum;
+    cout<<"Amount: ";
+    cin>>amount;
+
+    return;
+}
 int main(){
     S_List savelist;
     Svng tmp;
