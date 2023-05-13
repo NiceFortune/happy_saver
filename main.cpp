@@ -9,15 +9,15 @@ using namespace std;
 
 class Svng{
     public:
-    string title;
+    string title; // 이름
 
-    int goal_amount;
-    int curr_amount;
+    int goal_amount; // 목표량
+    int curr_amount; // 현재량
 
-    string start_d;
-    string end_d;
+    string start_d; // 시작일
+    string end_d; // 종료일
 
-    char is_full;
+    char is_full; // 달성 여부 (char -> boolean 변경예정)
 };
 
 class S_List{
@@ -184,7 +184,7 @@ void S_List :: loadData(){
     myfile.open("datalist.txt");
     
     if(!myfile){
-        printf("=> No file found\n");
+        printf("=> No file found.\n");
         return;
     }
 
