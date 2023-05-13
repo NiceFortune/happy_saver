@@ -17,9 +17,15 @@ class Svng{
     string start_d; // 시작일
     string end_d; // 종료일
 
-    char is_full; // 달성 여부 (char -> boolean 변경예정)
+    bool is_full; // 달성 여부
+    void set_is_full();
 };
-
+void Svng :: set_is_full(){
+    if(goal_amount <= curr_amount)
+        is_full = true;
+    else   
+        is_full = false;
+}
 class S_List{
     Svng l[LIST_SIZE];
     int count;
@@ -50,6 +56,7 @@ int select_menu(){
     cout<<"4. Remove piggy bank\n";
     cout<<"5. Save status\n";
     cout<<"6. Search piggy bank\n";
+    cout<<"7. Transfer money\n";
     cout<<"0. Quit  \n\t\t>> ";
     cin>>menu;
     cout<<endl;
@@ -69,7 +76,12 @@ void S_List::addSvng(Svng s){
     index++;
     return;
 }
-
+void show_is_full(bool is_full){
+    if(!is_full)
+        cout << "N\n";
+    else
+        cout << "Y\n"; 
+}
 void S_List::readSvng(){
     if(index==0){
         cout << "There are no piggy banks :(\n";
@@ -84,14 +96,16 @@ void S_List::readSvng(){
         cout<<"STATUS: $"<<l[i].curr_amount<<endl;
         cout<<"START: "<<l[i].start_d<<endl;
         cout<<"END: "<<l[i].end_d<<endl;
-        cout<<"FINISHED?: "<<l[i].is_full<<endl<<endl;
+        cout<<"FINISHED?: "; 
+        show_is_full(l[i].is_full); 
+        cout<<endl<<endl;
     }
     return;
 }
 
 void S_List::updateSvng(){
     int change_num, change_att, tmp;
-
+    readSvng();
     cout<<"Enter number of piggy bank to change: ";
     cin>>change_num;
     if(l[change_num-1].title=="") {
@@ -130,6 +144,7 @@ void S_List::updateSvng(){
             getline(cin, l[change_num-1].end_d);
             break;
     }
+    l[change_num-1].set_is_full();
     cout<<"Change successfully implemented.\n";
 }
 
@@ -275,6 +290,9 @@ void S_List :: transSvng(){
     }
     l[fromNum-1].curr_amount -= amount;
     l[toNum-1].curr_amount += amount;
+    // 돈 옮긴 후 is_full setting
+    l[fromNum-1].set_is_full();
+    l[toNum-1].set_is_full();
 }
 int main(){
     S_List savelist;
@@ -286,6 +304,9 @@ int main(){
     while(TRUE){
         menu_num = select_menu();
         switch(menu_num){
+            case 0:
+            //  종료
+                break;
             case 1:
                 //input title
                 cout<<"Enter new piggy bank name: ";
@@ -301,8 +322,11 @@ int main(){
                 //input end_date
                 cout<<"Enter end date: ";
                 getline(cin, tmp.end_d);
-        
-                tmp.is_full = 'n';
+                //setting is_full
+                if(tmp.curr_amount >= tmp.goal_amount)
+                    tmp.is_full = true;
+                else 
+                    tmp.is_full = false;
                 savelist.addSvng(tmp);
                 cout<<"Successfully Saved!\n";
                 break;
@@ -322,13 +346,15 @@ int main(){
                 savelist.searchData();
                 break;
             case 7:
+                savelist.transSvng();
+                cout<<"Successfully Transfer Money!\n";
                 break;
             case 8:
                 break;
             default:
+                cout << "You can enter numbers from 1 to 7 :>\n";
                 break;
         }
-        if(menu_num==0) break;
     }
     return 0;
 }
