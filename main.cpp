@@ -182,33 +182,34 @@ void S_List :: loadData(){
     string tmp;
     
     myfile.open("datalist.txt");
-    
+    // 파일 없을 경우 고려
     if(!myfile){
         printf("=> No file found.\n");
         return;
     }
-
+    // 파일 있을 시
     cout << "=> Loading...";
 
     while(TRUE){
         getline(myfile, l[count].title);
-        
+        // tmp에 한줄씩 넣어서 개행문자 제거 후 데이타에 넣기
         getline(myfile, tmp);
-
+        
         if(!myfile) break;
         
-        tmp[-1] = '\0';
+        tmp[-1] = '\0'; // string -> int 바꾸기 전 개행문자 제거
         l[count].goal_amount = stoi(tmp, nullptr, 10);
-       
+        
         getline(myfile, tmp);
         tmp[-1] = '\0';
         
         l[count].curr_amount = stoi(tmp, nullptr, 10);
         getline(myfile, l[count].start_d);
         getline(myfile,l[count].end_d);
-        getline(myfile,tmp);
 
+        getline(myfile,tmp);
         l[count].is_full = tmp[0];
+
         if(!myfile) break;
         count++;
         index++;
@@ -249,15 +250,31 @@ void S_List::searchData(){
 }
 
 void S_List :: transSvng(){
+    readSvng();
     int fromNum, toNum, amount;
+
     cout<<"From: ";
     cin>>fromNum;
+    if(l[fromNum-1].title == ""){
+        cout<<fromNum<<" is Invalid number.\n";
+        return;
+    }
+
     cout<<"To: ";
     cin>>toNum;
+    if(l[toNum-1].title == ""){
+        cout<<toNum<<" is Invalid number.\n";
+        return;
+    }
+
     cout<<"Amount: ";
     cin>>amount;
-
-    return;
+    if(l[fromNum-1].curr_amount < amount){
+        cout<<"It is not enough to subtract "<<amount<<"$..\n";
+        return;
+    }
+    l[fromNum-1].curr_amount -= amount;
+    l[toNum-1].curr_amount += amount;
 }
 int main(){
     S_List savelist;
