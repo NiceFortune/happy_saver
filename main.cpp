@@ -173,7 +173,7 @@ void S_List :: saveData(){
         myfile << l[i].end_d << endl;
         myfile << l[i].is_full<< endl;
     }
-    cout<<"=> 저장됨!\n";
+    cout<<"=> save !\n";
     return;
 }
 
