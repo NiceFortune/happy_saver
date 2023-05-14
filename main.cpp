@@ -58,9 +58,13 @@ int select_menu(){
     cout<<"6. Search piggy bank\n";
     cout<<"7. Transfer money\n";
     cout<<"0. Quit  \n\t\t>> ";
+
     cin>>menu;
     cout<<endl;
     getchar();
+
+    cout<<"********************\n\n";
+
     return menu;
 }
 
