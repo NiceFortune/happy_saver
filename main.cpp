@@ -69,6 +69,10 @@ int select_menu(){
 }
 
 void S_List::addSvng(Svng s){
+    if(count>=LIST_SIZE){
+        cout<<"Error.";
+        //여기에 리스트 정리해주는 함수가 필요함!
+    }
     l[count].title = s.title;
     l[count].goal_amount = s.goal_amount;
     l[count].curr_amount = s.curr_amount;
