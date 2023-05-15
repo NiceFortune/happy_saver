@@ -40,6 +40,7 @@ class S_List{
         void saveData();
         void loadData();
         void transSvng();
+        void organize_list();
 };
 
 S_List::S_List(){
@@ -69,8 +70,12 @@ int select_menu(){
 }
 
 void S_List::addSvng(Svng s){
+    if(index>=LIST_SIZE){
+        cout<<"You have reach a maximum number of piggy banks :(";
+        return;
+    }
     if(count>=LIST_SIZE){
-        cout<<"Error.";
+        cout<<"Organizing List...";
         //여기에 리스트 정리해주는 함수가 필요함!
     }
     l[count].title = s.title;
@@ -83,6 +88,10 @@ void S_List::addSvng(Svng s){
     count++;
     index++;
     return;
+}
+void S_List :: organize_list(){
+    
+    return; 
 }
 void show_is_full(bool is_full){
     if(!is_full)
