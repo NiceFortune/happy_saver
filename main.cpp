@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
-
 using namespace std;
 #define LIST_SIZE 30
 #define TRUE 1
@@ -70,6 +69,8 @@ int select_menu(){
 }
 
 void S_List::addSvng(){
+    string month[13] = {"" ,"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    string m[2] = {"a", "b"};
     if(index>=LIST_SIZE){
         cout<<"You have reach a maximum number of piggy banks :(";
         return;
@@ -91,14 +92,17 @@ void S_List::addSvng(){
     cout<<"Enter starting date\n";
     cout<<"Year : "; cin>>start_year;
     cout<<"Month : "; cin>>start_month;
-    cout<<"day :"; cin>>start_day;
+    cout<<"day : "; cin>>start_day;
+    //getchar();
+    l[count].start_d = month[start_month] + " " + to_string(start_day) + " " + to_string(start_year);
     //getline(cin, tmp.start_d);
     //input end_date
     unsigned short end_year, end_month, end_day;
-    cout<<"Enter end date: ";
+    cout<<"Enter end date\n";
     cout<<"Year : "; cin>>end_year;
     cout<<"Month : "; cin>>end_month;
-    cout<<"day :"; cin>>end_day;
+    cout<<"day : "; cin>>end_day;
+    l[count].end_d = month[end_month] + " " + to_string(end_day) + " " + to_string(end_year);
     //getline(cin, tmp.end_d);
     //setting is_full
     if(l[count].curr_amount >= l[count].goal_amount)
