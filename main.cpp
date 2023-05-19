@@ -32,7 +32,7 @@ class S_List{
     int index;
     public:
         S_List();
-        void addSvng(Svng s);
+        void addSvng();
         void readSvng();
         void updateSvng();
         void removeSvng();
@@ -69,7 +69,7 @@ int select_menu(){
     return menu;
 }
 
-void S_List::addSvng(Svng s){
+void S_List::addSvng(){
     if(index>=LIST_SIZE){
         cout<<"You have reach a maximum number of piggy banks :(";
         return;
@@ -78,13 +78,42 @@ void S_List::addSvng(Svng s){
         cout<<"Organizing List...";
         //여기에 리스트 정리해주는 함수가 필요함!
     }
+    //input title
+    cout<<"Enter new piggy bank name: ";
+    cin >> l[count].title;
+    //input amount
+    cout<<"Enter goal amount: ";
+    cin>>l[count].goal_amount;
+    getchar();
+    l[count].curr_amount = 0;
+    //input start_date
+    unsigned short start_year, start_month, start_day;
+    cout<<"Enter starting date\n";
+    cout<<"Year : "; cin>>start_year;
+    cout<<"Month : "; cin>>start_month;
+    cout<<"day :"; cin>>start_day;
+    //getline(cin, tmp.start_d);
+    //input end_date
+    unsigned short end_year, end_month, end_day;
+    cout<<"Enter end date: ";
+    cout<<"Year : "; cin>>end_year;
+    cout<<"Month : "; cin>>end_month;
+    cout<<"day :"; cin>>end_day;
+    //getline(cin, tmp.end_d);
+    //setting is_full
+    if(l[count].curr_amount >= l[count].goal_amount)
+    l[count].is_full = true;
+    else 
+    l[count].is_full = false;
+    cout<<"Successfully Saved!\n";
+    /*
     l[count].title = s.title;
     l[count].goal_amount = s.goal_amount;
     l[count].curr_amount = s.curr_amount;
     l[count].start_d = s.start_d;
     l[count].end_d = s.end_d;
     l[count].is_full = s.is_full;
-
+    */
     count++;
     index++;
     return;
@@ -315,37 +344,20 @@ int main(){
     S_List savelist;
     Svng tmp;
     int menu_num;
-
+    int flag = 1;
     savelist.loadData();
 
     while(TRUE){
+        if(flag == 0)
+         break;
         menu_num = select_menu();
         switch(menu_num){
             case 0:
             //  종료
+                flag = 0;
                 break;
             case 1:
-                //input title
-                cout<<"Enter new piggy bank name: ";
-                getline(cin, tmp.title);
-                //input amount
-                cout<<"Enter goal amount: ";
-                cin>>tmp.goal_amount;
-                getchar();
-                tmp.curr_amount = 0;
-                //input start_date
-                cout<<"Enter starting date: ";
-                getline(cin, tmp.start_d);
-                //input end_date
-                cout<<"Enter end date: ";
-                getline(cin, tmp.end_d);
-                //setting is_full
-                if(tmp.curr_amount >= tmp.goal_amount)
-                    tmp.is_full = true;
-                else 
-                    tmp.is_full = false;
-                savelist.addSvng(tmp);
-                cout<<"Successfully Saved!\n";
+                savelist.addSvng();
                 break;
             case 2:
                 savelist.readSvng();
