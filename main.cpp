@@ -93,9 +93,7 @@ void S_List::addSvng(){
     cout<<"Year : "; cin>>start_year;
     cout<<"Month : "; cin>>start_month;
     cout<<"day : "; cin>>start_day;
-    //getchar();
     l[count].start_d = month[start_month] + " " + to_string(start_day) + " " + to_string(start_year);
-    //getline(cin, tmp.start_d);
     //input end_date
     unsigned short end_year, end_month, end_day;
     cout<<"Enter end date\n";
@@ -103,21 +101,12 @@ void S_List::addSvng(){
     cout<<"Month : "; cin>>end_month;
     cout<<"day : "; cin>>end_day;
     l[count].end_d = month[end_month] + " " + to_string(end_day) + " " + to_string(end_year);
-    //getline(cin, tmp.end_d);
     //setting is_full
     if(l[count].curr_amount >= l[count].goal_amount)
     l[count].is_full = true;
     else 
     l[count].is_full = false;
     cout<<"Successfully Saved!\n";
-    /*
-    l[count].title = s.title;
-    l[count].goal_amount = s.goal_amount;
-    l[count].curr_amount = s.curr_amount;
-    l[count].start_d = s.start_d;
-    l[count].end_d = s.end_d;
-    l[count].is_full = s.is_full;
-    */
     count++;
     index++;
     return;
