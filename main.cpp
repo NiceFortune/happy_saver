@@ -52,7 +52,7 @@ S_List::S_List(){
 
 int select_menu(){
     int menu;
-    
+
     cout<<"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n";
 
     cout<<"\n\
@@ -228,11 +228,12 @@ void S_List::removeSvng(){
     if(num==1){
         l[num-1].title="";
         index--;
+        cout << "Successfully deleted.\n\n";
     }
     else{
-        printf("Deletion canceled.\n");
-        return;
+        printf("Deletion canceled.\n\n");
     }
+
 }
 
 void S_List :: saveData(){
