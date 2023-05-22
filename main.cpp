@@ -50,6 +50,7 @@ S_List::S_List(){
 
 int select_menu(){
     int menu;
+<<<<<<< Updated upstream
     cout<<"\n*** NICE FORTUNE ***\n";
     cout<<"1. Create a new piggy bank\n";
     cout<<"2. View status\n";
@@ -59,6 +60,30 @@ int select_menu(){
     cout<<"6. Search piggy bank\n";
     cout<<"7. Transfer money\n";
     cout<<"0. Quit  \n\t\t>> ";
+=======
+    
+    cout<<"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n";
+
+    cout<<"\n\
+█░█ ▄▀█ █▀█ █▀█ █▄█   █▀ ▄▀█ █░█ █▀▀ █▀█\n\
+█▀█ █▀█ █▀▀ █▀▀ ░█░   ▄█ █▀█ ▀▄▀ ██▄ █▀▄\n\n";
+    cout<<"𝟷 𝙲𝚛𝚎𝚊𝚝𝚎 𝚊 𝚗𝚎𝚠 𝚙𝚒𝚐𝚐𝚢 𝚋𝚊𝚗𝚔\n";
+    usleep(sec);
+    cout<<"𝟸 𝚅𝚒𝚎𝚠 𝚜𝚝𝚊𝚝𝚞𝚜\n";
+    usleep(sec+1000);
+    cout<<"𝟹 𝙲𝚑𝚊𝚗𝚐𝚎 𝚌𝚞𝚛𝚛𝚎𝚗𝚝 𝚜𝚝𝚊𝚝𝚞𝚜\n";
+    usleep(sec+2000);
+    cout<<"𝟺 𝚁𝚎𝚖𝚘𝚟𝚎 𝚙𝚒𝚐𝚐𝚢 𝚋𝚊𝚗𝚔\n";
+    usleep(sec+4000);
+    cout<<"𝟻 𝚂𝚊𝚟𝚎 𝚜𝚝𝚊𝚝𝚞𝚜\n";
+    usleep(sec+8000);
+    cout<<"𝟼 S𝚎𝚊𝚛𝚌𝚑 𝚙𝚒𝚐𝚐𝚢 𝚋𝚊𝚗𝚔\n";
+    usleep(sec+16000);
+    cout<<"𝟽 𝚃𝚛𝚊𝚗𝚜𝚏𝚎𝚛 𝚖𝚘𝚗𝚎𝚢\n";
+    usleep(sec+32000);
+    cout<<"𝟶 𝚀𝚞𝚒𝚝  \n\t\t\t\t>> ";
+    usleep(sec+32000);
+>>>>>>> Stashed changes
 
     cin>>menu;
     cout<<endl;
@@ -108,10 +133,22 @@ void S_List::readSvng(){
         if(l[i].title=="") continue;
 
         cout<<"Piggy Bank #"<<i+1<<endl;
+<<<<<<< Updated upstream
         cout<<"TITLE: "<<l[i].title<<endl;
         cout<<"GOAL: $"<<l[i].goal_amount<<endl;
         cout<<"STATUS: $"<<l[i].curr_amount<<endl;
         cout<<"START: "<<l[i].start_d<<endl;
+=======
+        usleep(sec);
+        cout<<"TITLE: "<<l[i].title<<endl;
+        usleep(sec);
+        cout<<"GOAL: $"<<l[i].goal_amount<<endl;
+        usleep(sec*2);
+        cout<<"STATUS: $"<<l[i].curr_amount<<endl;
+        usleep(sec*2);
+        cout<<"START: "<<l[i].start_d<<endl;
+        usleep(sec*2);
+>>>>>>> Stashed changes
         cout<<"END: "<<l[i].end_d<<endl;
         cout<<"FINISHED?: "; 
         show_is_full(l[i].is_full); 
@@ -134,7 +171,7 @@ void S_List::updateSvng(){
     cout<<"2) Goal Amount\n";
     cout<<"3) Current Savings\n";
     cout<<"4) Start Date\n";
-    cout<<"5) End Date\n";
+    cout<<"5) End Date\n\t\t\t\t>> ";
     cin>>change_att;
     getchar();
     switch (change_att){
