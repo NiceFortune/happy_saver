@@ -167,6 +167,7 @@ void S_List::readSvng(){
 }
 
 void S_List::updateSvng(){
+    string month[13] = {"" ,"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     int change_num, change_att, tmp;
     readSvng();
     cout<<"Enter number of piggy bank to change: ";
@@ -199,12 +200,24 @@ void S_List::updateSvng(){
             l[change_num-1].curr_amount += tmp;
             break;
         case 4:
-            cout<<"Enter starting date: ";
-            getline(cin, l[change_num-1].start_d);
+            //cout<<"Enter starting date: ";
+            //getline(cin, l[change_num-1].start_d);
+            unsigned short start_year, start_month, start_day;
+            cout<<"Enter starting date\n";
+            cout<<"Year : "; cin>>start_year;
+            cout<<"Month : "; cin>>start_month;
+            cout<<"day : "; cin>>start_day;
+            l[change_num-1].start_d = month[start_month] + " " + to_string(start_day) + " " + to_string(start_year);
             break;
         case 5:
-            cout<<"Enter end date: ";
-            getline(cin, l[change_num-1].end_d);
+            //cout<<"Enter end date: ";
+            //getline(cin, l[change_num-1].end_d);
+            unsigned short end_year, end_month, end_day;
+            cout<<"Enter end date\n";
+            cout<<"Year : "; cin>>end_year;
+            cout<<"Month : "; cin>>end_month;
+            cout<<"day : "; cin>>end_day;
+            l[change_num-1].end_d = month[end_month] + " " + to_string(end_day) + " " + to_string(end_year);
             break;
     }
     l[change_num-1].set_is_full();
