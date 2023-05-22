@@ -52,6 +52,8 @@ S_List::S_List(){
 
 int select_menu(){
     int menu;
+    
+    cout<<"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n";
 
     cout<<"\n\
 █░█ ▄▀█ █▀█ █▀█ █▄█   █▀ ▄▀█ █░█ █▀▀ █▀█\n\
@@ -145,15 +147,15 @@ void S_List::readSvng(){
         if(l[i].title=="") continue;
 
         cout<<"Piggy Bank #"<<i+1<<endl;
-        usleep(sec*3);
+        usleep(sec);
         cout<<"TITLE: "<<l[i].title<<endl;
-        usleep(sec*3);
+        usleep(sec);
         cout<<"GOAL: $"<<l[i].goal_amount<<endl;
-        usleep(sec*3);
+        usleep(sec*2);
         cout<<"STATUS: $"<<l[i].curr_amount<<endl;
-        usleep(sec*3);
+        usleep(sec*2);
         cout<<"START: "<<l[i].start_d<<endl;
-        usleep(sec*3);
+        usleep(sec*2);
         cout<<"END: "<<l[i].end_d<<endl;
         usleep(sec*3);
         cout<<"FINISHED?: "; 
@@ -178,7 +180,7 @@ void S_List::updateSvng(){
     cout<<"2) Goal Amount\n";
     cout<<"3) Current Savings\n";
     cout<<"4) Start Date\n";
-    cout<<"5) End Date\n";
+    cout<<"5) End Date\n\t\t\t\t>> ";
     cin>>change_att;
     getchar();
     switch (change_att){
